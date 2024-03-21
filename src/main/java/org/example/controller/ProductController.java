@@ -17,19 +17,19 @@ public class ProductController {
     public ProductController(ProductService productService){
         this.productService = productService;
     }
-    @GetMapping("/product")
+    @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts(){
         List<Product> product = productService.getAllProducts();
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
-    @PostMapping("/product")
+    @PostMapping("/products")
     public ResponseEntity<Product> addProduct(@RequestBody Product p){
         Product product = productService.saveProduct(p);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/products/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable Long id){
         try{
             productService.deleteProduct(id);

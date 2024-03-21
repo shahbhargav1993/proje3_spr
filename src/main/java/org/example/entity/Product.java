@@ -17,15 +17,16 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long productid;
-    public String productname;
+    private long productid;
+    private String productName;
 
-    public double price;
+    private double price;
 
-    public String sellerid;
+    private String sellerName;
 
     @JsonIgnore
     @ManyToOne
-    @JsonIgnoreProperties("seller")
-    public List<Seller> seller;
+    @JsonIgnoreProperties("product")
+
+    public Seller seller;
 }
