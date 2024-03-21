@@ -9,9 +9,5 @@ public class Main {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(Main.class);
-        //SpringApplication app = new SpringApplication((Main.class));
-        //app.setAdditionalProfiles("debug");
-        //app.run(args);
-
     }
 }
