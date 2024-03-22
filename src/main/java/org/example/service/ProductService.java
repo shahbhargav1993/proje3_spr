@@ -18,7 +18,8 @@ public class ProductService {
     SellerRepository sellerRepository;
 
     @Autowired
-    public ProductService (ProductRepository productRepository) {
+    public ProductService (ProductRepository productRepository,
+                           SellerRepository sellerRepository) {
 
         this.productRepository = productRepository;
         this.sellerRepository = sellerRepository;
@@ -29,9 +30,36 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product saveProduct(Product p){
+    public Product saveProduct(Product p) throws SellerException{
 
-        return productRepository.save(p);
+        Product newProduct = productRepository.save(p);
+
+        String sellerName = p.getSellerName();
+
+        List<Seller> sellers =
+                sellerRepository.findSellerBySellerName(sellerName);
+
+        Seller seller = sellers.get(0);
+
+        if(seller != null)
+        {
+            seller.products.add(p);
+        }
+        else
+        {
+            throw new SellerException("Cannot find seller with " +
+                    "sellerName: " + sellerName);
+        }
+//Made this a Query under ProductRepository
+        /*if (sellerOptional.isPresent()) {
+            Seller seller = sellerOptional.get();
+            seller.products.add(p);
+        } else {
+            throw new SellerException("Cannot find product with " +
+                    "sellerName: " + sellerName);
+        }*/
+
+        return newProduct;
     }
 
     public void deleteProduct(Long id) throws ProductException {

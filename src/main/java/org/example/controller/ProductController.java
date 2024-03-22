@@ -2,6 +2,7 @@ package org.example.controller;
 
 import org.example.entity.Product;
 import org.example.exception.ProductException;
+import org.example.exception.SellerException;
 import org.example.service.ProductService;
 import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,8 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<Product> addProduct(@RequestBody Product p){
+    public ResponseEntity<Product> addProduct(@RequestBody Product p) throws SellerException
+    {
         Product product = productService.saveProduct(p);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }

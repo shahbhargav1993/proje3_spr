@@ -23,7 +23,7 @@ public class Seller
 
     @JsonIgnore
     @OneToMany
-    @JoinColumn(name="seller_fk")
+    @JoinColumn(name="sellerName_fk")
 
     public List<Product> products;
 
