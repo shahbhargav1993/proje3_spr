@@ -22,11 +22,12 @@ public class Product {
 
     private double price;
 
-    private String sellerName;
+    //private String sellerName;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
-    @JsonIgnoreProperties("product")
+    @JsonIgnoreProperties("products")
+    //@JoinColumn(name = "seller_id")
 
     public Seller seller;
 }

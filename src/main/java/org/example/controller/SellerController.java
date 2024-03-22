@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.entity.Seller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ public class SellerController
 {
     SellerService sellerService;
 
+   @Autowired
     public SellerController(SellerService sellerService)
     {
         this.sellerService = sellerService;

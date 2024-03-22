@@ -38,5 +38,11 @@ public class SellerService
         }
     }
 
+    public boolean doesSellerExist(String sellerName) {
+        return sellerRepository.existsBySellerName(sellerName);
+
+    }
+
+
 
 }
